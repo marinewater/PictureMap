@@ -1,0 +1,9 @@
+label {
+    display: block;
+}
+
+input {
+    &:disabled {
+        cursor: not-allowed;
+    }
+}
