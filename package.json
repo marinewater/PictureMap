@@ -1,5 +1,5 @@
 {
-  "name": "exif_map",
+  "name": "PictureMap",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,6 +9,7 @@
   },
   "author": "marinewater",
   "license": "MIT",
+  "repository": "https://github.com/marinewater/PictureMap",
   "dependencies": {
     "exif-ts": "git+https://github.com/marinewater/exif-ts.git",
     "tslint-eslint-rules": "^5.3.1"
