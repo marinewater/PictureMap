@@ -24,7 +24,8 @@
     }],
     "variable-name": [ true, "ban-keywords", "check-format", "allow-leading-underscore" ],
     "space-within-parens": [ true, 1 ],
-    "no-trailing-whitespace": [ true, "ignore-comments" ]
+    "no-trailing-whitespace": [ true, "ignore-comments" ],
+    "prefer-for-of": false
   },
   "rulesDirectory": []
 }

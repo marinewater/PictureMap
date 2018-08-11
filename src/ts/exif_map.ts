@@ -118,8 +118,8 @@ export class ExifMap {
         show_loader( true );
         const exifData: File[] = [];
 
-        for ( const imageFile of this._imageInputElement.files ) {
-            exifData.push( imageFile );
+        for ( let i = 0; i < this._imageInputElement.files.length; i++ ) {
+            exifData.push( this._imageInputElement.files[ i ] );
         }
 
         return this._getImageData( exifData )
