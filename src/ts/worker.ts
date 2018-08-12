@@ -37,7 +37,16 @@ onmessage = function( e ) {
     const queue = e.data.map( ( i: File ) => getImageData( i ) );
     Promise.all( queue )
         .then( function( images ) {
-            postMessage( images );
+            postMessage( {
+                images,
+                type: 'success'
+            } );
+        } )
+        .catch( function( error ) {
+            postMessage( {
+                error,
+                type: 'error'
+            } );
         } );
 
 };

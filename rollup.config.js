@@ -17,7 +17,7 @@ module.exports = [{
         }),
         node_resolve(),
         commonjs(),
-        //uglify()
+        uglify()
     ]
 }, {
     input: 'src/ts/worker.ts',
@@ -33,6 +33,6 @@ module.exports = [{
         }),
         node_resolve(),
         commonjs(),
-        uglify()
+        //uglify()
     ]
 }];

@@ -126,7 +126,14 @@ export class ExifMap {
             .then( ( lonLat ) => this._renderMap( lonLat ) )
             .then( () => this._list_images() )
             .then( () => show_loader( false ) )
-            .then( () => disableFileInput( false ) );
+            .then( () => disableFileInput( false ) )
+            .catch( function( error ) {
+
+                console.error( error );
+                show_loader( false );
+                disableFileInput( false );
+
+            } );
 
     }
 
@@ -157,15 +164,20 @@ export class ExifMap {
 
             const worker = new Worker( 'dist/worker.min.js' );
 
-            worker.onmessage = ( e ) => {
-                resolve( e.data.map( function( i: IImageData ) {
-                    return {
-                        BinaryImage: i.binary,
-                        LonLat: ExifMap._parseGeoData( i.meta_data ),
-                        MetaData: i.meta_data,
-                        Name: i.file_name
-                    } as IPosition;
-                } ) );
+            worker.onmessage = ( e: any ) => {
+                if ( e.data.type === 'success' ) {
+                    resolve( e.data.images.map( function( i: IImageData ) {
+                        return {
+                            BinaryImage: i.binary,
+                            LonLat: ExifMap._parseGeoData( i.meta_data ),
+                            MetaData: i.meta_data,
+                            Name: i.file_name
+                        } as IPosition;
+                    } ) );
+                }
+                else {
+                    reject( e );
+                }
                 worker.terminate();
             };
             worker.onerror = ( error ) => {
